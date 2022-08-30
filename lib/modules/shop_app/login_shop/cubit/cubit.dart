@@ -14,7 +14,7 @@ class ShopLoginCubit extends Cubit<ShopLoginStates>
 
   LoginModel? loginModel;
   void userLogin({
-    required String email,
+    required String username,
     required String password,
   })
   {
@@ -23,8 +23,8 @@ class ShopLoginCubit extends Cubit<ShopLoginStates>
       url: LOGIN,
       data:
       {
-        'email':email,
-        'password':password,
+        'username': username,
+        'password': password,
       },).then((value){
         print(value.data);
         loginModel = LoginModel.fromJason(value.data);

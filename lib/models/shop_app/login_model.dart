@@ -2,12 +2,14 @@ class LoginModel
 {
 bool? status;
 String? message;
+String? token;
 UserData? data;
 
 LoginModel.fromJason(Map<String,dynamic> json)
 {
   status = json['status'];
   message = json['message'];
+  token = json['token'];
   data = json['data'] != null ? UserData.fromJason(json['data']): null;
 }
 
@@ -15,16 +17,8 @@ LoginModel.fromJason(Map<String,dynamic> json)
 
 class UserData
 {
-  int? id;
-  String? name;
-  String? email;
+  String? username;
   String? phone;
-  String? image;
-  int? points;
-  int? credit;
-  String? token;
-
-
 //   UserData({
 //     this.id,
 //     this.name,
@@ -39,14 +33,8 @@ class UserData
   //named constractor
   UserData.fromJason(Map<String,dynamic> json)
   {
-     id = json['id'];
-     name = json['name'];
-     email = json['email'];
+     username = json['username'];
      phone = json['phone'];
-     image = json['image'];
-     points = json['points'];
-     credit = json['credit'];
-     token = json['token'];
 
   }
 }

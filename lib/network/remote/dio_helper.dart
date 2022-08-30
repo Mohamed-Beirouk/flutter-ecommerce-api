@@ -7,7 +7,7 @@ class DioHelper
   {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'https://student.valuxapps.com/api/',
+        baseUrl: 'https://sup-er-app.herokuapp.com/apis/',
 
         receiveDataWhenStatusError: true,
         headers: {
@@ -26,7 +26,7 @@ class DioHelper
     dio.options.headers =
         {
           'lang': lang,
-          'Authorization': token,
+          'Authorization': 'token 5f8fadc4dd7c8f369ef29e8fef61776df2dd3634',
         };
     return await dio.get(
       url,

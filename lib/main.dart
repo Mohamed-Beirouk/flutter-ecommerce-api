@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:supper/layout/news_app/news_layout.dart';
+import 'package:supper/layout/shop_app/shop_layout.dart';
 import 'package:supper/layout/todo_app/todo_layout.dart';
 import 'package:supper/modules/bmi_app/bmi_result/bmi_result_screen.dart';
 import 'package:supper/modules/bmi_app/bmi/calculator_screen.dart';
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
         ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           type: BottomNavigationBarType.fixed,
-          selectedItemColor: Colors.deepOrange,
+          selectedItemColor: Colors.cyan,
           elevation: 20
         )
       ),

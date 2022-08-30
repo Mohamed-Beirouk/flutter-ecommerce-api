@@ -2,9 +2,11 @@ import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:supper/layout/shop_app/shop_layout.dart';
 import 'package:supper/modules/shop_app/login_shop/cubit/cubit.dart';
 import 'package:supper/modules/shop_app/login_shop/cubit/states.dart';
 import 'package:supper/modules/shop_app/register_shope/register_screen.dart';
+import 'package:supper/network/local/cache_helper.dart';
 import 'package:supper/shared/components/components.dart';
 
 
@@ -21,30 +23,32 @@ class LoginScreen extends StatelessWidget {
         listener: (context,state){
           if(state is ShopLoginSuccessState)
           {
-            if(state == state.loginModel.status)
+            if(state.loginModel.status == true)
             {
               print(state.loginModel.message);
-              print(state.loginModel.data!.token);
+              print(state.loginModel.token);
+
+              // CacheHelper.saveData(key: 'token', value: state.loginModel.token).then((value){
+              //   navigateAndFinish(context, ShopLayout(),);
+              // });
 
               Fluttertoast.showToast(
                   msg: '${state.loginModel.message}',
                   toastLength: Toast.LENGTH_SHORT,
                   gravity: ToastGravity.BOTTOM,
                   timeInSecForIosWeb: 8,
-                  backgroundColor: Colors.red,
+                  backgroundColor: Colors.green,
                   textColor: Colors.white,
                   fontSize: 16.0
               );
+              navigateAndFinish(context, ShopLayout(),);
+
             }else{
               print(state.loginModel.message);
-              Fluttertoast.showToast(
-                  msg: '${state.loginModel.message}',
-                  toastLength: Toast.LENGTH_SHORT,
-                  gravity: ToastGravity.BOTTOM,
-                  timeInSecForIosWeb: 5,
-                  backgroundColor: Colors.red,
-                  textColor: Colors.white,
-                  fontSize: 16.0
+
+              showToast(
+                  text: '${state.loginModel.message}',
+                  state: ToastStates.ERROR,
               );
             }
           }
@@ -76,9 +80,9 @@ class LoginScreen extends StatelessWidget {
                         ),
                         defaultTextField(
                           controller: emailController,
-                          type: TextInputType.emailAddress,
-                          text: 'Eamil Adress',
-                          prefix: Icons.email,
+                          type: TextInputType.text,
+                          text: 'Name',
+                          prefix: Icons.person,
                         ),
                         SizedBox(
                           height: 10,
@@ -110,7 +114,7 @@ class LoginScreen extends StatelessWidget {
                                 if(formkey.currentState!.validate())
                                 {
                                   ShopLoginCubit.get(context).userLogin(
-                                      email: emailController.text,
+                                      username: emailController.text,
                                       password: passwordController.text,
                                   );
 

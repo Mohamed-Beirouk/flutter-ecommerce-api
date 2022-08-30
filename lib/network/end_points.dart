@@ -1,1 +1,2 @@
-const LOGIN = 'login';
+const LOGIN = '/loginclient/';
+const PRODUCT = '/produit/';
